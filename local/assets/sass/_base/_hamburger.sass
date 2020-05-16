@@ -12,6 +12,10 @@
 	&:focus,
 	&:hover
 		outline: none
+		opacity: .7
+
+	+r(992)
+		display: block
 
 	&__box
 		position: relative
@@ -25,7 +29,7 @@
 		top: 0
 		width: 35px
 		height: 3px
-		background-color: $text
+		background-color: #fff
 		border-radius: 4px
 		transition: all .2s
 		bottom: 0
@@ -36,7 +40,7 @@
 			position: absolute
 			right: 0
 			top: -10px
-			background-color: $text
+			background-color: #fff
 			width: 35px
 			height: 3px
 			transition: transform 0s 0.1s
@@ -47,11 +51,10 @@
 			position: absolute
 			right: 0
 			top: -20px
-			background-color: $text
+			background-color: #fff
 			width: 35px
 			height: 3px
 			transition: transform 0s 0.1s
-
 
 	&--active
 		z-index: 1001

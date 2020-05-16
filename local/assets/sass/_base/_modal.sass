@@ -1,34 +1,54 @@
 .modal
-	position: relative
-	max-width: 620px
+	max-width: 650px
 	width: 100%
 	height: auto
-	padding: 40px 80px
-	background-color: #fff
+	padding: 65px 55px 55px
+	margin: 20px 0
 	z-index: 1
-	transform: scale(0.8)
+	background-color: $bg
+	+pseudo
+
+	&::before
+		position: absolute
+		top: 0
+		height: 15px
+		width: 100%
+		background: linear-gradient(rgba(#4b4b4b,1) 0%, rgba(0,0,0,0) 7px)
+
+	+r(1200)
+		padding: 40px
+	
+	+r(767)
+		padding: 25px 15px 15px
+		max-width: 460px
 
 	&__close
 		position: absolute
 		right: 15px
 		top: 15px
 		display: block
-		width: 36px
-		height: 36px
-		background-color: transparent
-		border: none
+		width: 40px
+		height: 40px
+		border-radius: 50%
+		border: 3px solid $accent
 		cursor: pointer
 		transition: all .6s
-		border: 2px solid $accent
-		border-radius: 50%
+		background-color: $bg
 
-		&:hover, &:focus
+		+r(1200)
+			top: 5px
+			right: 5px
+			width: 30px
+			height: 30px
+
+		&:hover,
+		&:focus
 			outline: none
 			transform: rotate(90deg)
-			border-color: #d25e5e
+			border: 3px solid $accent
 
 			span
-				background-color: #d25e5e
+				background: $accent
 
 		span
 			display: block
@@ -38,41 +58,77 @@
 			background: $accent
 			transition: all .6s
 			border-radius: 4px
-			height: 18px
-			width: 2px
+			height: 20px
+			width: 3px
+
+			+r(1200)
+				height: 15px
 
 			&:first-child
 				transform: translate(-50%, -50%) rotate(45deg)
 
 			&:last-child
 				transform: translate(-50%, -50%) rotate(-45deg)
-	
-	&__title
-		text-transform: uppercase
-		margin-bottom: 15px
+
+	h3
+		font-size: 30px
+		margin-bottom: 30px
 		text-align: center
-		font-weight: 700
 
-	&__accent
-		margin-bottom: 35px
-		color: #d25e5e
+		+r(1200)
+			font-size: 24px
+			margin-bottom: 20px
 
-		svg
-			fill: #d25e5e
-			width: 18px
-			margin-right: 8px
+		+r(767)
+			font-size: 20px
+			margin-bottom: 10px
+		
+		+r(480)
+			font-size: 18px
 
-	input
-		color: $text
-		height: 50px
-		line-height: 50px
+	p
+		text-align: center
+		font-size: 24px
+		margin-bottom: 40px
+		
+		+r(1200)
+			font-size: 20px
+			margin-bottom: 20px
+			
+		+r(767)
+			font-size: 14px
+			margin-bottom: 10px
 
-		&::placeholder
-			color: #9c9c9c
-			line-height: 50px
+	
+	&__input
+		margin-bottom: 40px
 
-	textarea
-		height: 100px
+		+r(1200)
+			margin-bottom: 20px
+		
+		+r(767)
+			margin-bottom: 10px
+	
+	&__select
+		margin-bottom: 25px
 
-.popup_visible .modal
-	transform: scale(1)
+	&__input-two
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		text-align: center
+
+		div
+			width: 47%
+
+	&__btn
+		margin-top: 60px
+
+		+r(1200)
+			margin-top: 30px
+		
+		+r(767)
+			margin-top: 15px
+
+		button
+			max-width: 100%

@@ -1,0 +1,41 @@
+// font-weight helper:
+// 100 Extra Light or Ultra Light;
+// 200 Light or Thin; 300 Book or Demi;
+// 400 Regular or Normal;
+// 500 Medium;
+// 600 Semibold or Demibold;
+// 700 Bold;
+// 800 Black or Extra Bold or Heavy;
+// 900 Extra Black or Fat or Ultra Black
+@mixin font($f-name, $f-style, $f-weight, $f-url)
+	@font-face
+		font-family: $f-name
+		font-style: $f-style
+		font-weight: $f-weight
+		src: url($f-url) format('woff2')
+		font-display: swap
+
+
+@include font('Helvetica', normal, 900, '../fonts/HelveticaNeueCyr-Heavy.woff2')
+@include font('Helvetica', italic, 900, '../fonts/HelveticaNeueCyr-HeavyItalic.woff2')
+
+@include font('Helvetica', normal, 800, '../fonts/HelveticaNeueCyr-Black.woff2')
+@include font('Helvetica', italic, 800, '../fonts/HelveticaNeueCyr-BlackItalic.woff2')
+
+@include font('Helvetica', normal, 700, '../fonts/HelveticaNeueCyr-Bold.woff2')
+@include font('Helvetica', italic, 700, '../fonts/HelveticaNeueCyr-BoldItalic.woff2')
+
+@include font('Helvetica', normal, 500, '../fonts/HelveticaNeueCyr-Medium.woff2')
+@include font('Helvetica', italic, 500, '../fonts/HelveticaNeueCyr-MediumItalic.woff2')
+
+@include font('Helvetica', normal, 400, '../fonts/HelveticaNeueCyr-Roman.woff2')
+@include font('Helvetica', italic, 400, '../fonts/HelveticaNeueCyr-Italic.woff2')
+
+@include font('Helvetica', normal, 300, '../fonts/HelveticaNeueCyr-Light.woff2')
+@include font('Helvetica', italic, 300, '../fonts/HelveticaNeueCyr-LightItalic.woff2')
+
+@include font('Helvetica', normal, 200, '../fonts/HelveticaNeueCyr-Thin.woff2')
+@include font('Helvetica', italic, 200, '../fonts/HelveticaNeueCyr-ThinItalic.woff2')
+
+@include font('Helvetica', normal, 100, '../fonts/HelveticaNeueCyr-UltraLight.woff2')
+@include font('Helvetica', italic, 100, '../fonts/HelveticaNeueCyr-UltraLightItalic.woff2')

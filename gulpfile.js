@@ -42,12 +42,9 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
 	return gulp.src([
 		'local/assets/libs/jquery/dist/jquery.min.js',  			//----jquery
-		'local/assets/libs/jquery.validate.js', 					//----форма
-		'local/assets/libs/jquery.mask.min.js', 					//----форма
 		'local/assets/libs/jquery.popupoverlay.js', 				//----модалки
-		'local/assets/libs/swiper/swiper.min.js', 			//----слайдер
 		'local/assets/libs/fancybox/jquery.fancybox.js', 
-		'local/assets/js/_custom.js', // Custom scripts. Always at the end
+		'local/assets/js/common.js', // Custom scripts. Always at the end
 		])
 	.pipe(concat('scripts.min.js'))
 	.pipe(uglify()) // Minify js (opt.)

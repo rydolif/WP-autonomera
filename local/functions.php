@@ -11,15 +11,6 @@
   }
   add_action( 'wp_enqueue_scripts', 'ewa_scripts' );
 
-//------------------подключение шрифтов------------------
-   function wph_add_google_fonts() {
-       if ( !is_admin() ) {
-          wp_register_style('IBM+Plex+Sans', 'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600,700&display=swap&subset=cyrillic', array(), null, 'all');
-           wp_enqueue_style('IBM+Plex+Sans');
-       }
-   }
-   add_action('wp_enqueue_scripts', 'wph_add_google_fonts');
-
 //------------------підключення додаткових функцій для постов ----------------------
   function myfirsttheme_setup() {
       add_theme_support( 'post-thumbnails' );
@@ -28,17 +19,17 @@
   add_action( 'after_setup_theme', 'myfirsttheme_setup' );
 
 //------------------чистка від лишнього ----------------------
-    // remove_action('wp_head','feed_links_extra', 3); // убирает ссылки на rss категорий
-    // remove_action('wp_head','feed_links', 2); // минус ссылки на основной rss и комментарии
-    // remove_action('wp_head','rsd_link');  // сервис Really Simple Discovery
-    // remove_action('wp_head','wlwmanifest_link'); // Windows Live Writer
-    // remove_action('wp_head','wp_generator');  // скрыть версию wordpress
-    // function modify_jquery() {
-    //         if (!is_admin()) {           
-    //         wp_deregister_script('jquery');
-    //         }
-    // }
-    // add_action('init', 'modify_jquery');
+    remove_action('wp_head','feed_links_extra', 3); // убирает ссылки на rss категорий
+    remove_action('wp_head','feed_links', 2); // минус ссылки на основной rss и комментарии
+    remove_action('wp_head','rsd_link');  // сервис Really Simple Discovery
+    remove_action('wp_head','wlwmanifest_link'); // Windows Live Writer
+    remove_action('wp_head','wp_generator');  // скрыть версию wordpress
+    function modify_jquery() {
+            if (!is_admin()) {           
+            wp_deregister_script('jquery');
+            }
+    }
+    add_action('init', 'modify_jquery');
 
 //------------------delet Post Type ----------------------
   function remove_menus(){
@@ -48,7 +39,7 @@
     // remove_menu_page( 'edit.php?post_type=page' );    //Страницы
     remove_menu_page( 'edit-comments.php' );          //Комментарии
     // remove_menu_page( 'themes.php' );                 //Внешний вид
-    // remove_menu_page( 'users.php' );                  //Пользователи
+    remove_menu_page( 'users.php' );                  //Пользователи
     // remove_menu_page( 'tools.php' );                  //Инструменты
     // remove_menu_page( 'options-general.php' );        //Настройки
   }
@@ -72,103 +63,37 @@
     'menu' => 'Навигация по сайту'
   ));
 
-//------------------Register Custom Post новости----------------------
-    function novosti_post_type() {
-        $labels = array(
-            'name'                  => _x( 'Новости', 'Post Type General Name', 'text_domain' ),
-            'singular_name'         => _x( 'Новости', 'Post Type Singular Name', 'text_domain' ),
-            'menu_name'             => __( 'Новости', 'text_domain' ),
-            'all_items'             => __( 'Новости', 'text_domain' ),
-            'add_new_item'          => __( 'Добавить Новость', 'text_domain' ),
-            'add_new'               => __( 'Добавить Новость', 'text_domain' ),
-        );
-        $args = array(
-            'label'                 => __( 'Бренды', 'text_domain' ),
-            'labels'                => $labels,
-            'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail'),// 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-            'hierarchical'          => false,
-            'public'                => true,
-            'show_ui'               => true,
-            'show_in_menu'          => true,
-            'menu_position'         => 4,
-            'menu_icon'             => 'dashicons-images-alt2',
-            'show_in_admin_bar'     => true,
-            'show_in_nav_menus'     => true,
-            'can_export'            => true,
-            'has_archive'           => true,
-            'exclude_from_search'   => false,
-            'publicly_queryable'    => true,
-            'capability_type'       => 'page',
-        );
-        register_post_type( 'novosti', $args );
-    }
-    add_action( 'init', 'novosti_post_type', 0 );
-
-
 //------------------Register Custom Post товары----------------------
-    function catalog_post_type() {
-        $labels = array(
-            'name'                  => _x( 'Каталог', 'Post Type General Name', 'text_domain' ),
-            'singular_name'         => _x( 'Каталог', 'Post Type Singular Name', 'text_domain' ),
-            'menu_name'             => __( 'Каталог', 'text_domain' ),
-            'all_items'             => __( 'Каталог', 'text_domain' ),
-            'add_new_item'          => __( 'Добавить Товар', 'text_domain' ),
-            'add_new'               => __( 'Добавить Товар', 'text_domain' ),
-        );
-        $args = array(
-            'label'                 => __( 'Бренды', 'text_domain' ),
-            'labels'                => $labels,
-            'supports'              => array( 'title', 'editor', 'thumbnail'),// 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-            'hierarchical'          => false,
-            'public'                => true,
-            'show_ui'               => true,
-            'show_in_menu'          => true,
-            'menu_position'         => 4,
-            'menu_icon'             => 'dashicons-images-alt2',
-            'show_in_admin_bar'     => true,
-            'show_in_nav_menus'     => true,
-            'can_export'            => true,
-            'has_archive'           => true,
-            'exclude_from_search'   => false,
-            'publicly_queryable'    => true,
-            'capability_type'       => 'page',
-        );
-        register_post_type( 'catalog', $args );
-    }
-    add_action( 'init', 'catalog_post_type', 0 );
-
-
-//------------------Register Custom Post товары----------------------
-    function tovar_post_type() {
-        $labels = array(
-            'name'                  => _x( 'Товар', 'Post Type General Name', 'text_domain' ),
-            'singular_name'         => _x( 'Товар', 'Post Type Singular Name', 'text_domain' ),
-            'menu_name'             => __( 'Товар', 'text_domain' ),
-            'all_items'             => __( 'Товар', 'text_domain' ),
-            'add_new_item'          => __( 'Добавить Товар', 'text_domain' ),
-            'add_new'               => __( 'Добавить Товар', 'text_domain' ),
-        );
-        $args = array(
-            'label'                 => __( 'Бренды', 'text_domain' ),
-            'labels'                => $labels,
-            'supports'              => array( 'title', 'thumbnail'),// 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-            'hierarchical'          => false,
-            'public'                => true,
-            'show_ui'               => true,
-            'show_in_menu'          => true,
-            'menu_position'         => 4,
-            'menu_icon'             => 'dashicons-images-alt2',
-            'show_in_admin_bar'     => true,
-            'show_in_nav_menus'     => true,
-            'can_export'            => true,
-            'has_archive'           => true,
-            'exclude_from_search'   => false,
-            'publicly_queryable'    => true,
-            'capability_type'       => 'page',
-        );
-        register_post_type( 'tovar', $args );
-    }
-    add_action( 'init', 'tovar_post_type', 0 );
+  function catalog_post_type() {
+      $labels = array(
+          'name'                  => _x( 'Каталог', 'Post Type General Name', 'text_domain' ),
+          'singular_name'         => _x( 'Каталог', 'Post Type Singular Name', 'text_domain' ),
+          'menu_name'             => __( 'Каталог', 'text_domain' ),
+          'all_items'             => __( 'Каталог', 'text_domain' ),
+          'add_new_item'          => __( 'Добавить Товар', 'text_domain' ),
+          'add_new'               => __( 'Добавить Товар', 'text_domain' ),
+      );
+      $args = array(
+          'label'                 => __( 'Бренды', 'text_domain' ),
+          'labels'                => $labels,
+          'supports'              => array( 'title', 'editor', 'thumbnail'),// 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+          'hierarchical'          => false,
+          'public'                => true,
+          'show_ui'               => true,
+          'show_in_menu'          => true,
+          'menu_position'         => 4,
+          'menu_icon'             => 'dashicons-images-alt2',
+          'show_in_admin_bar'     => true,
+          'show_in_nav_menus'     => true,
+          'can_export'            => true,
+          'has_archive'           => true,
+          'exclude_from_search'   => false,
+          'publicly_queryable'    => true,
+          'capability_type'       => 'page',
+      );
+      register_post_type( 'catalog', $args );
+  }
+  add_action( 'init', 'catalog_post_type', 0 );
 
 
 //------------------ "Хлебные крошки" для WordPress----------------------

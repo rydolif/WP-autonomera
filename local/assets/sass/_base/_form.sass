@@ -1,133 +1,102 @@
-.form
+form
 
-	&__text
-		font-size: 12px
-		text-align: center
-		margin-bottom: 15px
-		color: red
+input, textarea, select
+	+transition
+	width: 100%
+	border: 1px solid #ebebeb
+	outline: none
+	box-shadow: none
+	// -webkit-appearance: none
+	font-size: 16px
+	box-shadow: 0 0 6px rgba(42, 63, 125, 0.34)
+	background-color: #292929
+	color: $text
+	border-radius: 30px
+	text-align: center
+	font-size: 16px
 
-	&__line
-		position: relative
-		margin-bottom: 10px
+	&:focus:required:invalid
+		border-color: red
+		outline: none
+		box-shadow: none
+		-webkit-appearance: none
 
-		&:last-child
-			margin-bottom: 0
+	&:required:valid
+		border-color: green
+		outline: none
+		box-shadow: none
+		-webkit-appearance: none
 
-	&__textarea
-		margin-bottom: 20px
+	&::placeholder
+		color: $text
+		font-size: 16px
+		line-height: 50px
 
-	&__file
-		text-align: right
-		color: #676767
-		margin-bottom: 20px
+textarea
+	resize: none
+	height: 180px !important
+	padding-top: 15px
 
-		br
-			display: none
+	+r(1200)
+		height: 140px
+	
+	+r(767)
+		height: 100px
 
-		input
-			display: none
+input, select
+	height: 55px
+	line-height: 55px
+	padding: 0 15px
 
-		svg
-			position: relative
-			bottom: 0
-			fill: $accent
-			width: 28px
-			margin-left: 15px
-			transition: all .6s
+	+r(767)
+		height: 45px
+		line-height: 45px
 
-		label
-			cursor: pointer
+		&::placeholder
+			line-height: 45px
 
-			&:hover,
-			&:focus
-				color: $accent
-				transition: all .6s
+	&::placeholder
+		line-height: 55px
 
-				svg
-					bottom: -10px
 
-	&__btn
-		display: flex
-		justify-content: flex-end
+select
+	text-align-last: center
 
-	&__check
-		margin-bottom: 40px
+option
+	text-align-last: center
 
-		a
-			color: #676767
-			text-decoration: underline
+textarea
+	&::placeholder
+		line-height: 1.4
 
-			&:hover,
-			&:focus
-				color: $accent
 
-		.wpcf7-list-item-label
-			position: relative
-			padding-left: 50px
-			color: #676767
-			cursor: pointer
-			line-height: 1.2
-			font-weight: 300
-			margin-bottom: 0
+label
+	font-size: 14px
 
-			&::before,
-			&::after
-				content: ''
-				position: absolute
-				left: 0
+	span
+		color: #5a5a5a
 
-			&::before
-				top: 5px
-				width: 22px
-				height: 22px
-				border-radius: 3px
-				border: 1px solid #c3c3c3
+label.error
+	position: absolute
+	bottom: -25px
+	right: 25px
+	left: 25px
+	transition: all .3s
+	animation: error .3s linear 1 forwards
+	color: #fff
+	text-align: center
+	font-weight: 600
+	background-color: red
+	border-radius: 10px
+	z-index: 1
 
-			&::after
-				width: 14px
-				height: 14px
-				border-radius: 3px
-				border: 1px solid $accent
-				background: $accent
-				left: 4px
-				top: 9px
-				transition: all .6s
-
-		input[type="checkbox"]
-			display: none
-
-		input[type="checkbox"]:checked + .wpcf7-list-item-label::after
-			transform: scale(1)
-
-		input[type="checkbox"] + .wpcf7-list-item-label::after
-			transform: scale(0)
-
-	label.error
+	&::before
+		content: ''
 		position: absolute
-		bottom: -25px
-		right: 25px
-		left: 25px
-		transition: all .3s
-		animation: error .3s linear 1 forwards
-		color: #fff
-		text-align: center
-		font-weight: 600
-		background-color: red
-		border-radius: 10px
-		font-size: 14px
-
-		&::before
-			content: ''
-			position: absolute
-			left: 50%
-			top: -8px
-			transform: translate(-50%, 0)
-			border-bottom: 4px solid red
-			border-left: 4px solid transparent
-			border-right: 4px solid transparent
-			border-top: 4px solid transparent
-
-
-
-
-
+		left: 50%
+		top: -8px
+		margin-left: -2px
+		border-bottom: 4px solid red
+		border-left: 4px solid transparent
+		border-right: 4px solid transparent
+		border-top: 4px solid transparent
