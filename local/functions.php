@@ -63,18 +63,18 @@
     'menu' => 'Навигация по сайту'
   ));
 
-//------------------Register Custom Post товары----------------------
-  function catalog_post_type() {
+//------------------Register Custom Post Каталог----------------------
+  function nomer_post_type() {
       $labels = array(
           'name'                  => _x( 'Каталог', 'Post Type General Name', 'text_domain' ),
           'singular_name'         => _x( 'Каталог', 'Post Type Singular Name', 'text_domain' ),
           'menu_name'             => __( 'Каталог', 'text_domain' ),
           'all_items'             => __( 'Каталог', 'text_domain' ),
-          'add_new_item'          => __( 'Добавить Товар', 'text_domain' ),
-          'add_new'               => __( 'Добавить Товар', 'text_domain' ),
+          'add_new_item'          => __( 'Добавить Номер', 'text_domain' ),
+          'add_new'               => __( 'Добавить Номер', 'text_domain' ),
       );
       $args = array(
-          'label'                 => __( 'Бренды', 'text_domain' ),
+          'label'                 => __( 'Каталог', 'text_domain' ),
           'labels'                => $labels,
           'supports'              => array( 'title', 'editor', 'thumbnail'),// 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
           'hierarchical'          => false,
@@ -91,9 +91,9 @@
           'publicly_queryable'    => true,
           'capability_type'       => 'page',
       );
-      register_post_type( 'catalog', $args );
+      register_post_type( 'nomer', $args );
   }
-  add_action( 'init', 'catalog_post_type', 0 );
+  add_action( 'init', 'nomer_post_type', 0 );
 
 
 //------------------ "Хлебные крошки" для WordPress----------------------
@@ -346,3 +346,64 @@
             echo $args['before_output'] . $echo . $args['after_output'];
     }
 
+/**
+ * ACF Load More Repeater
+*/
+
+// add action for logged in users
+add_action('wp_ajax_my_repeater_show_more', 'my_repeater_show_more');
+// add action for non logged in users
+add_action('wp_ajax_nopriv_my_repeater_show_more', 'my_repeater_show_more');
+
+function my_repeater_show_more() {
+	// validate the nonce
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'my_repeater_field_nonce')) {
+		exit;
+	}
+	// make sure we have the other values
+	if (!isset($_POST['post_id']) || !isset($_POST['offset'])) {
+		return;
+	}
+	$show = 3; // how many more to show
+	$start = $_POST['offset'];
+	$end = $start+$show;
+	$post_id = $_POST['post_id'];
+	// use an object buffer to capture the html output
+	// alternately you could create a varaible like $html
+	// and add the content to this string, but I find
+	// object buffers make the code easier to work with
+	ob_start();
+	if (have_rows('work', $post_id)) {
+		$total = count(get_field('work', $post_id));
+		$count = 0;
+		while (have_rows('work', $post_id)) {
+			the_row();
+			if ($count < $start) {
+				// we have not gotten to where
+				// we need to start showing
+				// increment count and continue
+				$count++;
+				continue;
+			}
+			?>
+        <a  href="<?php the_sub_field('img'); ?>" data-fancybox="gallery" class="page--work__item work__item" data-img="<?php the_sub_field('img'); ?>">
+          <img class="img-gallery" alt="BeWILDerwood Gallery" src="<?php the_sub_field('img'); ?>" />
+        </a>
+			<?php 
+			$count++;
+			if ($count == $end) {
+				// we've shown the number, break out of loop
+				break;
+			}
+		} // end while have rows
+	} // end if have rows
+	$content = ob_get_clean();
+	// check to see if we've shown the last item
+	$more = false;
+	if ($total > $count) {
+		$more = true;
+	}
+	// output our 3 values as a json encoded array
+	echo json_encode(array('content' => $content, 'more' => $more, 'offset' => $end));
+	exit;
+} // end function my_repeater_show_more
