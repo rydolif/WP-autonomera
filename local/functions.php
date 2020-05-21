@@ -23,13 +23,13 @@
     remove_action('wp_head','feed_links', 2); // минус ссылки на основной rss и комментарии
     remove_action('wp_head','rsd_link');  // сервис Really Simple Discovery
     remove_action('wp_head','wlwmanifest_link'); // Windows Live Writer
-    remove_action('wp_head','wp_generator');  // скрыть версию wordpress
-    function modify_jquery() {
-            if (!is_admin()) {           
-            wp_deregister_script('jquery');
-            }
-    }
-    add_action('init', 'modify_jquery');
+    // remove_action('wp_head','wp_generator');  // скрыть версию wordpress
+    // function modify_jquery() {
+    //         if (!is_admin()) {           
+    //         wp_deregister_script('jquery');
+    //         }
+    // }
+    // add_action('init', 'modify_jquery');
 
 //------------------delet Post Type ----------------------
   function remove_menus(){
@@ -386,9 +386,77 @@ function my_repeater_show_more() {
 				continue;
 			}
 			?>
-        <a  href="<?php the_sub_field('img'); ?>" data-fancybox="gallery" class="page--work__item work__item" data-img="<?php the_sub_field('img'); ?>">
+        <a  href="<?php the_sub_field('img'); ?>" data-fancybox="gallery" class="page--work__item work__item transform" data-img="<?php the_sub_field('img'); ?>">
           <img class="img-gallery" alt="BeWILDerwood Gallery" src="<?php the_sub_field('img'); ?>" />
         </a>
+			<?php 
+			$count++;
+			if ($count == $end) {
+				// we've shown the number, break out of loop
+				break;
+			}
+		} // end while have rows
+	} // end if have rows
+	$content = ob_get_clean();
+	// check to see if we've shown the last item
+	$more = false;
+	if ($total > $count) {
+		$more = true;
+	}
+	// output our 3 values as a json encoded array
+	echo json_encode(array('content' => $content, 'more' => $more, 'offset' => $end));
+	exit;
+} // end function my_repeater_show_more
+
+
+
+/**
+ * ACF Load More Repeater
+*/
+
+// add action for logged in users
+add_action('wp_ajax_my_repeater_show', 'my_repeater_show');
+// add action for non logged in users
+add_action('wp_ajax_nopriv_my_repeater_show', 'my_repeater_show');
+
+function my_repeater_show() {
+	// validate the nonce
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'my_repeater_field')) {
+		exit;
+	}
+	// make sure we have the other values
+	if (!isset($_POST['post_id']) || !isset($_POST['offset'])) {
+		return;
+	}
+	$show = 3; // how many more to show
+	$start = $_POST['offset'];
+	$end = $start+$show;
+	$post_id = $_POST['post_id'];
+	// use an object buffer to capture the html output
+	// alternately you could create a varaible like $html
+	// and add the content to this string, but I find
+	// object buffers make the code easier to work with
+	ob_start();
+	if (have_rows('list', $post_id)) {
+		$total = count(get_field('list', $post_id));
+		$count = 0;
+		while (have_rows('list', $post_id)) {
+			the_row();
+			if ($count < $start) {
+				// we have not gotten to where
+				// we need to start showing
+				// increment count and continue
+				$count++;
+				continue;
+			}
+			?>
+        <div class="page--nomera__item transform">
+          <img class="img-gallery" alt="img" src="<?php the_sub_field('img'); ?>" />
+          <p class="page--nomera__item_name"><?php the_sub_field('oblasts'); ?></p>
+          <p class="page--nomera__item_price"><b><?php the_sub_field('price'); ?> ₽</b></p>
+          <p class="page--nomera__item_text">под ключ</p>
+          <a href="#" class="btn buy_open">Купить</a>
+        </div>
 			<?php 
 			$count++;
 			if ($count == $end) {

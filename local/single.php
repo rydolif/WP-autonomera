@@ -1,25 +1,35 @@
-<?php
-/* Template name: Роботы */
-?>
+
 
 <?php get_header(); ?>
 
-	<section class="work page">
+	<section class="page--nomera page">
 		<div class="container">
 
-			<h2>Наши работы</h2>
+			<ul class="crums">
+				<li><a href="<?php echo get_home_url(); ?>">Главная</a></li>
+				<li><span>/</span></li>
+				<li><a href="#" class="catalog_open">Каталог</a></li>
+				<li><span>/</span></li>
+				<li><span><?php the_title(); ?></span></li>
+			</ul>
+
+			<h2><?php the_title(); ?></h2>
 
 			<div id="photo-gallery">
-				<div class="row work__list">
+				<div class="row page--nomera__list">
 					<?php
-					if( have_rows('work') ): 
-						$total = count(get_field('work'));
+					if( have_rows('list') ): 
+						$total = count(get_field('list'));
 						$count = 0;
 						$number = 8;
-						while ( have_rows('work') ) : the_row(); ?>
-								<a href="<?php the_sub_field('img'); ?>" data-fancybox="gallery" data-img="<?php the_sub_field('img'); ?>" class="page--work__item work__item">
+						while ( have_rows('list') ) : the_row(); ?>
+								<div class="page--nomera__item">
 									<img class="img-gallery" alt="img" src="<?php the_sub_field('img'); ?>" />
-								</a>
+									<p class="page--nomera__item_name"><?php the_sub_field('oblasts'); ?></p>
+									<p class="page--nomera__item_price"><b><?php the_sub_field('price'); ?> ₽</b></p>
+									<p class="page--nomera__item_text">под ключ</p>
+									<a href="#" class="btn buy_open">Купить</a>
+								</div>
 							<?php
 							if ($count == $number) {
 								// we've shown the number, break out of loop
@@ -29,26 +39,30 @@
 					else : endif;
 					?>
 				</div>
-				<a id="gallery-load-more" class="page--work__more" href="javascript: my_repeater_show_more();" <?php if ($total < $count) { ?> style="display: none;"<?php } ?>>
+				
+				<a id="gallery-load-more" class="page--work__more" href="javascript: my_repeater_show();" <?php if ($total < $count) { ?> style="display: none;"<?php } ?>>
 					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/load.svg" alt="">
-					<b>Посмотреть остальные</b>
+					<b>Загрузить еще</b>
 				</a>
 			</div>
 
-			<script type="text/javascript">
+		</div>
+	</section>
+
+	<script type="text/javascript">
 				var my_repeater_field_post_id = <?php echo $post->ID; ?>;
 				var my_repeater_field_offset = <?php echo $number + 1; ?>;
-				var my_repeater_field_nonce = '<?php echo wp_create_nonce('my_repeater_field_nonce'); ?>';
+				var my_repeater_field_nonce = '<?php echo wp_create_nonce('my_repeater_field'); ?>';
 				var my_repeater_ajax_url = '<?php echo admin_url('admin-ajax.php'); ?>';
-				var my_repeater_more = true;
+				var my_repeater = true;
 				
-				function my_repeater_show_more() {
+				function my_repeater_show() {
 					
 					// make ajax request
 					jQuery.post(
 						my_repeater_ajax_url, {
 							// this is the AJAX action we set up in PHP
-							'action': 'my_repeater_show_more',
+							'action': 'my_repeater_show',
 							'post_id': my_repeater_field_post_id,
 							'offset': my_repeater_field_offset,
 							'nonce': my_repeater_field_nonce
@@ -70,7 +84,12 @@
 					);
 				}
 				
-			</script>
+	</script>
+	
+	<section class="work">
+		<div class="container">
+
+			<?php get_template_part( 'parts/contacts' ); ?>
 
 		</div>
 	</section>

@@ -9,11 +9,13 @@
 			</div>
 
 			<div class="footer__col">
-				<ul class="footer__nav">
-					<li><a href="#">Каталог</a></li>
-					<li><a href="#">Наши работы</a></li>
-					<li><a href="#">Отзывы о нас</a></li>
-				</ul>
+				<?php 
+					wp_nav_menu( array(
+					'menu'=>'menu',
+					'menu_class'=>'footer__nav',
+					'theme_location'=>'menu',
+					) );
+				?>
 				<p class="footer__soc header__soc">
 					<a href="<?php the_field('vk', 'option'); ?>" target="_blank" class="header__soc_link header__soc_vk">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/vk.svg" alt=""> 

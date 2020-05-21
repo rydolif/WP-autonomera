@@ -7,7 +7,7 @@
 	<section class="hero">
 		<div class="container">
 			<h1>магазин красивых автомобильных номеров премиум-класса</h1>
-			<a href="#" class="btn hero__btn">посмотреть каталог</a>
+			<a href="#" class="btn hero__btn catalog_open">посмотреть каталог</a>
 		</div>
 	</section>
 
@@ -19,27 +19,27 @@
 			<div class="work__list">
 				<div class="work__item">
 					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/work1.png" alt="">
-					<a href="#" class="btn">подробнее</a>
+					<a href="<?php echo get_home_url(); ?>/nashi-raboty/" class="btn">подробнее</a>
 				</div>
 				<div class="work__item">
 					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/work2.png" alt="">
-					<a href="#" class="btn">подробнее</a>
+					<a href="<?php echo get_home_url(); ?>/nashi-raboty/" class="btn">подробнее</a>
 				</div>
 				<div class="work__item">
 					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/work3.png" alt="">
-					<a href="#" class="btn">подробнее</a>
+					<a href="<?php echo get_home_url(); ?>/nashi-raboty/" class="btn">подробнее</a>
 				</div>
 				<div class="work__item">
 					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/work4.png" alt="">
-					<a href="#" class="btn">подробнее</a>
+					<a href="<?php echo get_home_url(); ?>/nashi-raboty/" class="btn">подробнее</a>
 				</div>
 				<div class="work__item">
 					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/work5.png" alt="">
-					<a href="#" class="btn">подробнее</a>
+					<a href="<?php echo get_home_url(); ?>/nashi-raboty/" class="btn">подробнее</a>
 				</div>
 				<div class="work__item">
 					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/work6.png" alt="">
-					<a href="#" class="btn">подробнее</a>
+					<a href="<?php echo get_home_url(); ?>/nashi-raboty/" class="btn">подробнее</a>
 				</div>
 			</div>
 

@@ -1,102 +1,163 @@
-form
+.form
 
-input, textarea, select
-	+transition
-	width: 100%
-	border: 1px solid #ebebeb
-	outline: none
-	box-shadow: none
-	// -webkit-appearance: none
-	font-size: 16px
-	box-shadow: 0 0 6px rgba(42, 63, 125, 0.34)
-	background-color: #292929
-	color: $text
-	border-radius: 30px
-	text-align: center
-	font-size: 16px
+	div
+		position: relative
 
-	&:focus:required:invalid
-		border-color: red
-		outline: none
-		box-shadow: none
-		-webkit-appearance: none
+	.caldera-grid .help-block
+		min-width: fit-content
+		position: absolute
+		top: 95%
+		left: 50%
+		transform: translate(-50%, 0)
+		background-color: red
+		border-radius: 10px
+		line-height: 14px
+		color: #ffffff !important
+		text-align: center
+		padding: 0 10px
+		z-index: 1
+		line-height: 1.6
 
-	&:required:valid
-		border-color: green
-		outline: none
-		box-shadow: none
-		-webkit-appearance: none
+		&::before
+			content: ''
+			position: absolute
+			left: 50%
+			top: -8px
+			transform: translate(-50%, 0)
+			border-bottom: 4px solid red
+			border-left: 4px solid transparent
+			border-right: 4px solid transparent
+			border-top: 4px solid transparent
 
-	&::placeholder
-		color: $text
-		font-size: 16px
-		line-height: 50px
+	input, textarea, select
+		+transition
+		width: 100% !important
+		border: 1px solid #ebebeb !important
+		outline: none !important
+		box-shadow: none !important
+		// -webkit-appearance: none
+		font-size: 16px !important
+		box-shadow: 0 0 6px rgba(42, 63, 125, 0.34) !important
+		background-color: #292929 !important
+		color: $text !important
+		border-radius: 30px !important
+		text-align: center !important
+		font-size: 16px !important
 
-textarea
-	resize: none
-	height: 180px !important
-	padding-top: 15px
+		&:focus:required:invalid
+			border-color: red
+			outline: none
+			box-shadow: none
+			-webkit-appearance: none
 
-	+r(1200)
-		height: 140px
-	
-	+r(767)
-		height: 100px
-
-input, select
-	height: 55px
-	line-height: 55px
-	padding: 0 15px
-
-	+r(767)
-		height: 45px
-		line-height: 45px
+		&:required:valid
+			border-color: green
+			outline: none
+			box-shadow: none
+			-webkit-appearance: none
 
 		&::placeholder
-			line-height: 45px
+			color: $text !important
+			font-size: 16px !important
+			line-height: 50px !important
 
-	&::placeholder
-		line-height: 55px
+	textarea
+		resize: none !important
+		height: 180px !important
+		padding-top: 15px !important
+
+		+r(1200)
+			height: 140px !important
+		
+		+r(767)
+			height: 100px !important
+
+	input, select
+		height: 55px !important
+		line-height: 55px !important
+		padding: 0 15px !important
+
+		+r(767)
+			height: 45px !important
+			line-height: 45px !important
+
+			&::placeholder
+				line-height: 45px !important
+
+		&::placeholder
+			line-height: 55px !important
 
 
-select
-	text-align-last: center
+	select
+		text-align-last: center !important
 
-option
-	text-align-last: center
+	option
+		text-align-last: center !important
 
-textarea
-	&::placeholder
-		line-height: 1.4
+	textarea
+		&::placeholder
+			line-height: 1.4 !important
+
+	label
+		font-size: 14px !important
+
+		span
+			color: #5a5a5a !important
 
 
-label
-	font-size: 14px
+	div
+		.btn
+			position: relative !important
+			display: flex !important
+			justify-content: center !important
+			align-items: center !important
+			max-width: 100% !important
+			min-width: 195px !important
+			width: 100% !important
+			height: 55px !important
+			border: 1px solid $accent !important
+			border-radius: 55px !important
+			background-color: $accent !important
+			font-size: 18px !important
+			font-weight: 700 !important
+			color: $text !important
+			white-space: nowrap !important
+			text-transform: uppercase !important
+			padding: 0 35px !important
 
-	span
-		color: #5a5a5a
+			+r(1450)
+				min-width: auto !important
+				padding: 0 15px !important
+				font-size: 16px !important
 
-label.error
-	position: absolute
-	bottom: -25px
-	right: 25px
-	left: 25px
-	transition: all .3s
-	animation: error .3s linear 1 forwards
-	color: #fff
-	text-align: center
-	font-weight: 600
-	background-color: red
-	border-radius: 10px
-	z-index: 1
+			+r(1200)
+				height: 45px !important
+				padding: 0 10px !important
 
-	&::before
-		content: ''
-		position: absolute
-		left: 50%
-		top: -8px
-		margin-left: -2px
-		border-bottom: 4px solid red
-		border-left: 4px solid transparent
-		border-right: 4px solid transparent
-		border-top: 4px solid transparent
+			+r(576)
+				font-size: 14px !important
+				height: 40px !important
+
+			+r(480)
+				font-size: 12px !important
+				padding: 0 5px !important
+
+			&:hover,
+			&:focus
+				border: none !important
+				background: #fff !important
+				color: $accent !important
+				border: 1px solid $accent !important
+
+			&--transparent
+				background-color: transparent !important
+				border: 1px solid $text !important
+				text-transform: none !important
+				font-weight: 500 !important
+
+				&:hover,
+				&:focus
+					border: 1px solid $accent !important
+
+		p
+			margin-bottom: 0
