@@ -43,14 +43,14 @@
 				</div>
 			</div>
 
-			<div class="work__new">
+			<a href="<?php echo get_home_url(); ?>/distancionnyj-pereves/" class="work__new">
 				<h2><img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/new.svg" alt=""> Новинка</h2>
 				<div class="work__new_hr"></div>
 				<div class="work__new_info">
-					<h3>Услуга дистационного перевеса</h3>
+					<h3>Услуга дистанционного <br>переоформления номера</h3>
 					<p>Переоформим номер на вас из другого региона</p>
 				</div>
-			</div>
+			</a>
 
 			<?php get_template_part( 'parts/contacts' ); ?>
 		</div>

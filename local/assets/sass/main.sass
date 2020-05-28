@@ -24,21 +24,11 @@
 
 
 .link
-	+pseudo
-
-	&::before
-		+transition
-		position: absolute
-		top: 100%
-		display: block
-		width: 0
-		height: 1px
-		background-color: $text
+	+transition
 
 	&:hover,
 	&:focus
-		&::before
-			width: 100%
+		color: $accent
 
 
 .header
@@ -68,7 +58,7 @@
 			padding-right: 60px
 
 	&__logo
-		font-size: 24px
+		font-size: 26px
 		text-transform: uppercase
 
 		+r(1200)
@@ -88,13 +78,13 @@
 		&_tel
 			@extend .link
 			font-weight: 900
-			font-size: 24px
+			font-size: 22px
 			line-height: 1
 			margin-bottom: 12px
 			width: 100%
 
 			+r(1200)
-				font-size: 18px
+				font-size: 16px
 
 		&_link
 			display: flex
@@ -190,6 +180,7 @@
 				margin: 0 auto 20px
 
 	&__btn
+
 		+r(576)
 			display: none
 
@@ -201,43 +192,43 @@
 
 .hero
 	+cover
-	padding-top: 615px
+	padding-top: 155px
 	padding-bottom: 75px
 	background-image: url(../img/hero.png)
 	text-align: center
 
 	+r(1450)
-		padding-top: 500px
+		padding-top: 130px
 		padding-bottom: 30px
 
-	+r(1200)
-		padding-top: 400px
-
 	+r(992)
-		padding-top: 330px
+		padding-top: 100px
 		padding-bottom: 15px
 
-	+r(576)
-		padding-top: 200px
+	+r(480)
+		padding-top: 80px
 
 	h1
-		margin-bottom: 65px
+		margin-bottom: 450px
 
 		+r(1450)
-			margin-bottom: 30px
+			margin-bottom: 400px
 
 		+r(992)
-			margin-bottom: 15px
+			margin-bottom: 300px
+
+		+r(480)
+			margin-bottom: 200px
 
 	&__btn
-		font-size: 36px
-		padding: 0 45px
-		height: 80px
+		font-size: 24px
+		height: 55px
 		margin: 0 auto
+		padding: 0 45px
 
 		+r(1200)
-			height: 60px
-			font-size: 24px
+			height: 50px
+			font-size: 22px
 		
 		+r(576)
 			height: 45px
@@ -309,10 +300,17 @@
 		justify-content: center
 		align-items: center
 		flex-wrap: wrap
-		box-shadow: 0 0 20px 0 rgba(#000, .8)
+		box-shadow: 0 0 5px 0 rgba(#000, 1)
+		
 		+pseudo
+		+transition
+
+		&:hover,
+		&:focus
+			box-shadow: 0 0 20px 0 rgba(#000, .8)
 
 		&::before
+			+transition
 			position: absolute
 			top: 0
 			height: 15px
@@ -525,7 +523,7 @@
 		p
 			+last
 			margin-bottom: 15px
-			font-size: 18px
+			font-size: 17px
 
 			+r(1200)
 				margin-bottom: 10px
@@ -717,3 +715,15 @@
 	text-align: center
 	font-size: 24px
 	color: #ffffff !important
+
+.article
+	font-size: 16px
+	min-height: 90vh
+
+	p
+		+last
+		margin-bottom: 10px
+	
+	li
+		+last
+		margin-bottom: 5px

