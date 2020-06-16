@@ -11,9 +11,9 @@
 			<div class="footer__col">
 				<?php 
 					wp_nav_menu( array(
-					'menu'=>'menu',
+					'menu'=>'footer__menu',
 					'menu_class'=>'footer__nav',
-					'theme_location'=>'menu',
+					'theme_location'=>'footer__menu',
 					) );
 				?>
 				<p class="footer__soc header__soc">
