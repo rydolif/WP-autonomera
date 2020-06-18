@@ -463,13 +463,13 @@
 		+between
 
 	&__col
-		width: 26%
+		width: 25%
+
+		&:nth-child(2)
+			width: 50%
 
 		+r(1200)
-			width: 31%
-
-		+r(767)
-			width: 100%
+			width: 100% !important
 			text-align: center
 			margin-bottom: 20px
 
@@ -487,11 +487,10 @@
 		display: flex
 		flex-wrap: wrap
 		margin-bottom: 30px
+		font-size: 16px
 
 		+r(1200)
 			margin-bottom: 15px
-
-		+r(767)
 			justify-content: center
 
 		ul
@@ -520,6 +519,11 @@
 
 	&__soc
 		width: 100%
+		max-width: 220px
+		margin: 0 auto
+
+		+r(992)
+			display: flex
 
 		+r(767)
 			width: 150px
@@ -528,7 +532,7 @@
 	&__info
 		text-align: right
 
-		+r(767)
+		+r(1200)
 			text-align: center
 
 		a
@@ -699,26 +703,6 @@
 					max-width: 100%
 
 
-.crums
-	display: flex
-	flex-wrap: wrap
-	font-size: 18px
-	padding-bottom: 20px
-
-	+r(992)
-		font-size: 16px
-		padding-bottom: 15px
-	
-	+r(480)
-		font-size: 14px
-		padding-bottom: 10px
-
-	li
-		margin-right: 5px
-
-	a
-		@extend .link
-
 
 .transform
 	animation: transform .5s linear 1 forwards
@@ -734,12 +718,20 @@
 	font-size: 18px
 	min-height: 90vh
 
+
 	+r(992)
 		font-size: 16px
 
 	p
 		+last
-		margin-bottom: 10px
+		margin-bottom: 15px
+
+	a
+		color: $accent
+
+		&:hover,
+		&:focus
+			text-decoration: underline
 	
 	li
 		+last
@@ -776,6 +768,38 @@
 
 .wp-block-image.is-resized
 	width: 100%
+
+.crums
+	display: flex
+	flex-wrap: wrap
+	font-size: 18px
+	padding-bottom: 20px
+
+	+r(992)
+		font-size: 16px
+		padding-bottom: 15px
+	
+	+r(480)
+		font-size: 14px
+		padding-bottom: 10px
+
+	li
+		margin-right: 5px
+
+	a
+		@extend .link
+		color: #ffffff
+
+.alignleft
+	margin-bottom: 0
+	margin-right: 10px
+	margin-top: -3px
+
+	img
+		max-width: 100%
+
+.wp-block-image
+	margin-bottom: 0
 
 
 
