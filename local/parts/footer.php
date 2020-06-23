@@ -20,14 +20,14 @@
 					<a href="<?php the_field('vk', 'option'); ?>" target="_blank" class="header__soc_link header__soc_vk">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/vk.svg" alt=""> 
 					</a>
+					<a href="<?php the_field('whatsapp', 'option'); ?>" target="_blank" class="header__soc_link header__soc_whatsapp">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/whatsapp.svg" alt="">
+					</a>
 					<a href="<?php the_field('telegram', 'option'); ?>" target="_blank" class="header__soc_link header__soc_telegram">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/telegram.svg" alt="">
 					</a>
 					<a href="<?php the_field('viber', 'option'); ?>" target="_blank" class="header__soc_link header__soc_viber">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/viber.svg" alt="">
-					</a>
-					<a href="<?php the_field('whatsapp', 'option'); ?>" target="_blank" class="header__soc_link header__soc_whatsapp">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/svg/whatsapp.svg" alt="">
 					</a>
 				</p>
 			</div>
